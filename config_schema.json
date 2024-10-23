@@ -1,0 +1,12 @@
+{
+    "macro_to_reload_elements": {
+    },
+    "fields": [
+        {
+            "name": "chaosforge.longs",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        }
+    ]
+}
