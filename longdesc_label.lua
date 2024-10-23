@@ -6,17 +6,25 @@ function chaosforge.longdesc_label:show()
     self.cf_long_label = Geyser.Label:new({
         name = "cf_long_label",
         x = 0, y = 0,
-        width = "100%", height = "50",
+        width = "100%", height = "80",
         fgColor = "black",
         message = [[<center>""</center>]]
       })
-    self.cf_long_label:setFontSize(10)
-    self.cf_long_label:echo(amap.localization.current_long)
+    setLabelStyleSheet("cf_long_label", [[font-family: "Lucida Console", monospace;font-size: 8pt;]])
+    --self.cf_long_label:setFontSize(10)
+    setBackgroundColor("cf_long_label", 0, 20, 0, 200)
+
+    --string.gsub(amap.localization.current_long, "\\.", "\n")
+    
+    cecho("cf_long_label", "<green>".. string.gsub(amap.localization.current_long, "[.]", '.\n'))
 end
 function chaosforge.longdesc_label:hide()
     self.cf_long_label:hide()
 end
 
+function chaosforge.longdesc_label:init()
+    self.handler = scripts.event_register:register_singleton_event_handler(self.handler, "amapNewLocation", function() self:hide() end)
+end
 
 function scripts.ingress:post_process_message(msg)
     if scripts.ui.separate_talk_window and scripts.ui.separate_talk_window_msg_types[gmcp.gmcp_msgs.type] then
@@ -35,8 +43,8 @@ function scripts.ingress:post_process_message(msg)
     end
     if gmcp.gmcp_msgs.type == "room.long" then
         amap.localization.current_long = ansi2string(msg):gsub("\n", "")
-        if chaosforge.longs then
-            
+        if chaosforge.longs == true then
+            chaosforge.longdesc_label:show()
         end
     end
     if gmcp.gmcp_msgs.type == "room.exits" then
@@ -50,3 +58,4 @@ function scripts.ingress:post_process_message(msg)
     raiseEvent("incomingMessage", gmcp.gmcp_msgs.type, msg)
 end
 
+chaosforge.longdesc_label:init()
