@@ -11,15 +11,13 @@ function chaosforge.longdesc_label:show()
         message = [[<center>""</center>]]
       })
     setLabelStyleSheet("cf_long_label", [[font-family: "Lucida Console", monospace;font-size: 8pt;]])
-    --self.cf_long_label:setFontSize(10)
     setBackgroundColor("cf_long_label", 0, 20, 0, 200)
-
-    --string.gsub(amap.localization.current_long, "\\.", "\n")
-    
     cecho("cf_long_label", "<green>".. string.gsub(amap.localization.current_long, "[.]", '.\n'))
 end
 function chaosforge.longdesc_label:hide()
-    self.cf_long_label:hide()
+    if self.cf_long_label then
+        self.cf_long_label:hide()
+    end
 end
 
 function chaosforge.longdesc_label:init()
