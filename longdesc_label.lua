@@ -13,6 +13,7 @@ function chaosforge.longdesc_label:show()
     setLabelStyleSheet("cf_long_label", [[font-family: "Lucida Console", monospace;font-size: 8pt;]])
     setBackgroundColor("cf_long_label", 0, 20, 0, 200)
     cecho("cf_long_label", "<green>".. string.gsub(amap.localization.current_long, "[.]", '.\n'))
+    self.cf_long_label:setStyleSheet(scripts.ui.current_theme:get_footer_stylesheet())
 end
 function chaosforge.longdesc_label:hide()
     if self.cf_long_label then
