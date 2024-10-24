@@ -77,5 +77,11 @@ function chaosforge:config_cheatsheet()
 end
 
 return {
-    "longdesc_label"
+    "longdesc_label",
+    "guardhelper",
+    "arkadia_references",
+    "items",
+    "replacements",
+    "arkadia_herbporn",
+    "lampa"
 }

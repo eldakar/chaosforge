@@ -6,14 +6,13 @@ function chaosforge.longdesc_label:show()
     self.cf_long_label = Geyser.Label:new({
         name = "cf_long_label",
         x = 0, y = 0,
-        width = "100%", height = "80",
+        width = "100%", height = "100",
         fgColor = "black",
         message = [[<center>""</center>]]
       })
-    setLabelStyleSheet("cf_long_label", [[font-family: "Lucida Console", monospace;font-size: 8pt;]])
     setBackgroundColor("cf_long_label", 0, 20, 0, 200)
     cecho("cf_long_label", "<green>".. string.gsub(amap.localization.current_long, "[.]", '.\n'))
-    self.cf_long_label:setStyleSheet(scripts.ui.current_theme:get_footer_stylesheet())
+    self.cf_long_label:setStyleSheet(scripts.ui.current_theme:get_notification_stylesheet())
 end
 function chaosforge.longdesc_label:hide()
     if self.cf_long_label then
