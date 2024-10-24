@@ -11,7 +11,8 @@ function chaosforge.longdesc_label:show()
         message = [[<center>""</center>]]
       })
     setBackgroundColor("cf_long_label", 0, 20, 0, 200)
-    cecho("cf_long_label", "<green>".. string.gsub(amap.localization.current_long, "[.]", '.\n'))
+    --cecho("cf_long_label", "<green>".. string.gsub(amap.localization.current_long, "[.]", '.\n'))
+    cecho("cf_long_label", "<green>".. amap.localization.current_long)
     self.cf_long_label:setStyleSheet(scripts.ui.current_theme:get_notification_stylesheet())
 end
 function chaosforge.longdesc_label:hide()
