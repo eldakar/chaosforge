@@ -1,12 +1,10 @@
 chaosforge.longdesc_label = chaosforge.longdesc_label or {
     handler = nil
 }
-
 Patterns = {
-    { pattern = "nawe",     color = "<red>" },
-    { pattern = "schody",   color = "<blue>" },
+    { pattern = "schody",   color = "<yellow>" },
     { pattern = "ksiedze",  color = "<yellow>" },
-    { pattern = "sadzawka", color = "<blue>" }
+    { pattern = "sadzawka", color = "<yellow>" }
     -- Dodaj więcej wzorców i kolorów według potrzeb
 }
 
@@ -23,23 +21,28 @@ function chaosforge:longdesc_stylesheet()
 end
 
 function chaosforge.longdesc_label:show()
-    local msg
+    local message = amap.localization.current_long
+    local window_width = getMainWindowSize()
+    local label_width = window_width
+    local chars_per_line = math.floor(label_width / 10)
+    local num_lines = math.ceil(#message / chars_per_line)
+    local label_height = num_lines * 15
 
     for _, p in ipairs(Patterns) do
-        msg = amap.localization.current_long:gsub(p.pattern, p.color .. p.pattern .. "<green>")
+        message = message:gsub(p.pattern, p.color .. p.pattern .. "<green>")
     end
     self.cf_long_label = Geyser.Label:new({
         name = "cf_long_label",
         x = 0,
         y = 0,
         width = "100%",
-        height = tostring(50 * line_count),
+        height = tostring(label_height) .. "px",
         fgColor = "black",
         message = [[<center>""</center>]]
     })
     setBackgroundColor("cf_long_label", 0, 20, 0, 200)
     --cecho("cf_long_label", "<green>".. string.gsub(amap.localization.current_long, "[.]", '.\n'))
-    cecho("cf_long_label", "<green>" .. msg)
+    cecho("cf_long_label", "<green>" .. ansi2string(message))
     self.cf_long_label:setStyleSheet(chaosforge:longdesc_stylesheet())
 end
 
@@ -70,14 +73,9 @@ function scripts.ingress:post_process_message(msg)
         amap.localization.current_exit = ""
     end
     if gmcp.gmcp_msgs.type == "room.long" then
-        local line_count = 0
-        for _ in msg:gmatch("[^\n]*\n?") do
-            line_count = line_count + 1
-        end
         amap.localization.current_long = ansi2string(msg):gsub("\n", "")
         if chaosforge.longs == true then
             chaosforge.longdesc_label:show()
-            line_count = 0
         end
     end
     if gmcp.gmcp_msgs.type == "room.exits" then
