@@ -9,6 +9,24 @@
             "macros_on_modify": []
         },
         {
+            "name": "chaosforge.item_hints",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        },
+        {
+            "name": "chaosforge.replace_herb_consumption",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        },
+        {
+            "name": "chaosforge.buffbar_enabled",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        },
+        {
             "name": "guardhelper.respect_attack_flags",
             "default_value": false,
             "field_type": "boolean",
@@ -46,6 +64,42 @@
         },
         {
             "name": "guardhelper.cooldown_lock",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        },
+        {
+            "name": "arkadia_findme.highlight_current_room",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        },
+        {
+            "name": "arkadia_findme.search_depth",
+            "default_value": 0,
+            "field_type": "number",
+            "macros_on_modify": []
+        },
+        {
+            "name": "arkadia_findme.debug_enabled",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        },
+        {
+            "name": "arkadia_findme.contributor_name",
+            "default_value": "",
+            "field_type": "string",
+            "macros_on_modify": []
+        },
+        {
+            "name": "arkadia_findme.labels.map_info_enabled",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        },
+        {
+            "name": "chaosforge.discord_notifier",
             "default_value": false,
             "field_type": "boolean",
             "macros_on_modify": []

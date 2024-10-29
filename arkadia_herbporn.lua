@@ -200,7 +200,7 @@ function arkadia_herbporn:loop()
                 }, arkadia_herbporn.geyser_container)
                 arkadia_herbporn.items[i].label:setStyleSheet(
                     string.format("border-image: url('%s'); qproperty-alignment: 'AlignCenter | AlignVCenter';",
-                    string.format("%s/plugins/arkadia_herbporn/%s.png", getMudletHomeDir(), arkadia_herbporn.items[i].type))
+                    string.format("%s/plugins/chaosforge/%s.png", getMudletHomeDir(), arkadia_herbporn.items[i].type))
                 )
                 --arkadia_herbporn.items[i].label:echo("<font color='lawn green'>" .. self:nice_minutes(arkadia_herbporn.items[i].effect))
                 arkadia_herbporn.items[i].gauge = Geyser.Gauge:new({
@@ -236,7 +236,9 @@ end
 
 function arkadia_herbporn:debug_print(text)
     --cecho("\n<CadetBlue>(skrypty):<purple>(alchemy) <reset>" .. text)
-    cecho("\n<purple>(Alchemy) <reset>" .. os.date("%H:%m:%S") .. " ".. text)
+    if chaosforge.replace_herb_consumption == true then
+        cecho("\n<purple>(Alchemy) <reset>" .. os.date("%H:%m:%S") .. " ".. text)
+    end
 end
 
 function arkadia_herbporn:alchemist_init_triggers()
@@ -245,7 +247,6 @@ function arkadia_herbporn:alchemist_init_triggers()
 end
 
 function arkadia_herbporn:_add(action, herb)
-    deleteLine()
     local tmpaction = "zjedz"
     if action == "Zjadasz" then tmpaction = "zjedz" end
     if action == "Wachasz" then tmpaction = "powachaj" end
@@ -265,9 +266,15 @@ function arkadia_herbporn:_add(action, herb)
     end
 
     if herbs.herbs_long_to_short[herb] then
-        self:debug_print("<DeepPink>" .. action .. " <MediumPurple>" .. herb .. " <DeepPink>" .. herbs.herbs_long_to_short[herb] .. " <yellow>" .. tmpeffect)
+        if chaosforge.replace_herb_consumption == true then
+            deleteLine()
+            self:debug_print("<DeepPink>" .. action .. " <MediumPurple>" .. herb .. " <DeepPink>" .. herbs.herbs_long_to_short[herb] .. " <yellow>" .. tmpeffect)
+        end
     else
-        self:debug_print("<red>Nie ma tego w bazie: " .. action .. " " .. herb)
+        if chaosforge.replace_herb_consumption == true then
+            deleteLine()
+            self:debug_print("<red>Nie ma tego w bazie: " .. action .. " " .. herb)
+        end
         return
     end
 
@@ -334,7 +341,6 @@ function trigger_func_herbs_positive_effect()
     selectCurrentLine()
     fg("forest_green")
     resetFormat()
-    print("test: " ..  matches[1])
 end
 
 --<string>^Czujesz sie (bardziej niezdarn(?:y|a)|mniej wytrzymal(?:y|a)|bardziej zmeczon(?:y|a)|mniej odporn(?:y|a) na trucizne|bardziej glodn(?:y|a)|oslabion(?:y|a)|bardziej niezdarn(?:y|a)|mniej wytrzymal(?:y|a)|mniej inteligentn(?:y|a)|mniej odwazn(?:y|a)|bardziej zmeczon(?:y|a) mentalnie|bardziej glodn(?:y|a)|gorzej|bardziej zmeczon(?:y|a)|bardziej niespokojn(?:y|a)|mniej odporn(?:y|a) na *)\.$</string>
@@ -343,14 +349,16 @@ function trigger_func_herbs_negative_effect()
     selectCurrentLine()
     fg("orange_red")
     resetFormat()
-    --print("test: " ..  matches[1])
 end
 
 function arkadia_herbporn:init()
-    self.fontsize = scripts.ui.multibinds.font_size + 2
     arkadia_herbporn.items = {}
+    if chaosforge.buffbar_enabled == true then
+        self.fontsize = scripts.ui.multibinds.font_size + 2
+        arkadia_herbporn:loop()
+    end
     arkadia_herbporn:create_triggers()
-    arkadia_herbporn:loop()
+
 end
 
 arkadia_herbporn:init()

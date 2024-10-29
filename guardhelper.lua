@@ -332,7 +332,10 @@ function guardhelper:za_func_type(targetType)
 end
 
 function guardhelper:za_func()
-
+    if not gmcp.char.info then
+      gmcp.char.info = {}
+      gmcp.char.info.guild_occ = ''
+    end
     guardhelper:actions_around_enemies()
     -- I am the defense target
     if ateam.my_id == self.guardId then
