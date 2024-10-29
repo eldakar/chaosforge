@@ -1,8 +1,7 @@
 chaosforge.longdesc_label = chaosforge.longdesc_label or {
     handler = nil
 }
-Patterns_default_color = "<white>"
-Patterns = {
+chaosforge.longdesc_label.patterns = {
     { pattern = "schody",   color = nil },
     { pattern = "ksiedze",  color = "<yellow>" },
     { pattern = "sadzawka", color = nil }
@@ -23,14 +22,13 @@ end
 
 function chaosforge.longdesc_label:show()
     local message = amap.localization.current_long
-    local window_width = getMainWindowSize()
-    local label_width = window_width
+    local label_width = getMainWindowSize()
     local chars_per_line = math.floor(label_width / 12)
     local num_lines = math.ceil(#message / chars_per_line)
-    local label_height = num_lines * 15
+    local label_height = num_lines * 20
 
-    for _, p in ipairs(Patterns) do
-        local color = p.color or Patterns_default_color
+    for _, p in ipairs(chaosforge.longdesc_label.patterns) do
+        local color = p.color or "<white>"
         message = message:gsub(p.pattern, color .. p.pattern .. "<green>")
     end
     self.cf_long_label = Geyser.Label:new({
