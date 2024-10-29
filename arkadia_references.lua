@@ -17,8 +17,12 @@ function arkadia_references:createPortalShorts()
 end
 --🢀 🢂 🢁 🢃 🢄 🢅 🢆 🢇
 
-function arkadia_references:test()
-
+function arkadia_references:help()
+    chaosforge:debug_print("info", "Pomoc do skryptow referencji")
+    cecho("/ar elf        - przedrostki elfa, jak ktos chce dla swojej rasy to prosze o liste\n")
+    cecho("/ar por        - opisy przejsc w portalu\n")
+    cecho("/ar kamienie   - opisy efektow dzialania kamieni\n")
+    cecho("/ar umy        - statyczna porownania umiejetnosci zawodow\n")
 end
 
 

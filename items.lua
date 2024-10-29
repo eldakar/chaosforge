@@ -329,41 +329,44 @@ function trigger_func_skrypty_inventory_trzyma_bron()
 end
 
 function arkadia_references.items:init()
-    for token, hint in pairs(whites) do
-        scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "white", false, false, false, hint) end)
-    end
-    for token, hint in pairs(oranges) do
-        scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "orange", false, false, false, hint) end)
-    end
-    for token, hint in pairs(blues) do
-        scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "LightSkyBlue", false, false, false, hint) end)
-    end
-    for token, hint in pairs(reds) do
-        scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "red", true, false, false, hint) end)
-    end
-    for token, hint in pairs(greens) do
-        scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "green", false, false, false, hint) end)
-    end
-    for token, hint in pairs(pinks) do
-        scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "DeepPink", true, false, false, hint) end)
-    end
-    for token, hint in pairs(furniture) do
-        scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "SaddleBrown", true, false, false, hint) end)
-    end
-    for token, hint in pairs(plaszcz) do
-        scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "DimGray", true, true, false, false) end)
-    end
 
+    if chaosforge.item_hints == true then
 
-    scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(whites, string.lower(name)) end, transform = function(name) return "<" .. "white" .. "><i><b>" .. name end }
-    scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(oranges, string.lower(name)) end, transform = function(name) return "<" .. "orange" .. "><i><b>" .. name end }
-    scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(blues, string.lower(name)) end, transform = function(name) return "<" .. "LightSkyBlue" .. "><i><b>" .. name end }
-    scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(reds, string.lower(name)) end, transform = function(name) return "<" .. "red" .. "><i><b>" .. name end }
-    scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(greens, string.lower(name)) end, transform = function(name) return "<" .. "green" .. "><i><b>" .. name end }
-    scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(pinks, string.lower(name)) end, transform = function(name) return "<" .. "DeepPink" .. "><i><b>" .. name end }
-    scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(furniture, string.lower(name)) end, transform = function(name) return "<" .. "SaddleBrown" .. "><i><b>" .. name end }
-    scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(plaszcz, string.lower(name)) end, transform = function(name) return "<" .. "DimGray" .. "><i><b>" .. name end }
+        for token, hint in pairs(whites) do
+            scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "white", false, false, false, hint) end)
+        end
+        for token, hint in pairs(oranges) do
+            scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "orange", false, false, false, hint) end)
+        end
+        for token, hint in pairs(blues) do
+            scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "LightSkyBlue", false, false, false, hint) end)
+        end
+        for token, hint in pairs(reds) do
+            scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "red", true, false, false, hint) end)
+        end
+        for token, hint in pairs(greens) do
+            scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "green", false, false, false, hint) end)
+        end
+        for token, hint in pairs(pinks) do
+            scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "DeepPink", true, false, false, hint) end)
+        end
+        for token, hint in pairs(furniture) do
+            scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "SaddleBrown", true, false, false, hint) end)
+        end
+        for token, hint in pairs(plaszcz) do
+            scripts.tokens:register(token, function(token) scripts.tokens:highlight(token, "DimGray", true, true, false, false) end)
+        end
+
+        scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(whites, string.lower(name)) end, transform = function(name) return "<" .. "white" .. "><i><b>" .. name end }
+        scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(oranges, string.lower(name)) end, transform = function(name) return "<" .. "orange" .. "><i><b>" .. name end }
+        scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(blues, string.lower(name)) end, transform = function(name) return "<" .. "LightSkyBlue" .. "><i><b>" .. name end }
+        scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(reds, string.lower(name)) end, transform = function(name) return "<" .. "red" .. "><i><b>" .. name end }
+        scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(greens, string.lower(name)) end, transform = function(name) return "<" .. "green" .. "><i><b>" .. name end }
+        scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(pinks, string.lower(name)) end, transform = function(name) return "<" .. "DeepPink" .. "><i><b>" .. name end }
+        scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(furniture, string.lower(name)) end, transform = function(name) return "<" .. "SaddleBrown" .. "><i><b>" .. name end }
+        scripts.inv.pretty_containers.name_transformers.important_items = { check = function(name) return table.contains(plaszcz, string.lower(name)) end, transform = function(name) return "<" .. "DimGray" .. "><i><b>" .. name end }
+
+    end
 end
-
 
 arkadia_references.items:init()
