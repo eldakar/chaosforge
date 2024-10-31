@@ -1,12 +1,96 @@
 chaosforge.longdesc_label = chaosforge.longdesc_label or {
     handler = nil
 }
-Patterns = {
-    { pattern = "schody",   color = "<yellow>" },
-    { pattern = "ksiedze",  color = "<yellow>" },
-    { pattern = "sadzawka", color = "<yellow>" }
-    -- Dodaj więcej wzorców i kolorów według potrzeb
+chaosforge.longdesc_label.patterns = {
+    { pattern = "okno",         color = nil },
+    { pattern = "skrzyni%a*",   color = nil },
+    { pattern = "posag%a*",     color = nil },
+    { pattern = "obraz%a*",     color = nil },
+    { pattern = "lustro",       color = nil },
+    { pattern = "kominek",      color = nil },
+    { pattern = "bibliotek%a*", color = nil },
+    { pattern = "lozk%a*",      color = nil },
+    { pattern = "biurk%a*",     color = nil },
+    { pattern = "szaf%a*",      color = nil },
+    { pattern = "dywan%a*",     color = nil },
+    { pattern = "zegar%a*",     color = nil },
+    { pattern = "fontann%a*",   color = nil },
+    { pattern = "most%a*",      color = nil },
+    { pattern = "kamien%a*",    color = nil },
+    { pattern = "drzew%a*",     color = nil },
+    { pattern = "krzew%a*",     color = nil },
+    { pattern = "kwiat%a*",     color = nil },
+    { pattern = "studni%a*",    color = nil },
+    { pattern = "lawk%a*",      color = nil },
+    { pattern = "mur%a*",       color = nil },
+    { pattern = "bram%a*",      color = nil },
+    { pattern = "latarni%a*",   color = nil },
+    { pattern = "pomnik%a*",    color = nil },
+    { pattern = "wiatrak%a*",   color = nil },
+    { pattern = "most%a*",      color = nil },
+    { pattern = "altan%a*",     color = nil },
+    { pattern = "drzwi%a*",     color = nil },
+    { pattern = "schod%a*",     color = nil },
+    { pattern = "ksieg%a*",     color = nil },
+    { pattern = "sadzawk%a*",   color = nil },
+    { pattern = "stol%a*",      color = nil },
+    { pattern = "krzes%a*",     color = nil },
+    { pattern = "polk%a*",      color = nil },
+    { pattern = "szuflad%a*",   color = nil },
+    { pattern = "lamp%a*",      color = nil },
+    { pattern = "korytarz%a*",  color = nil },
+    { pattern = "dzban%a*",     color = nil },
+    { pattern = "misk%a*",      color = nil },
+    { pattern = "kubk%a*",      color = nil },
+    { pattern = "dzbank%a*",    color = nil },
+    { pattern = "kosz%a*",      color = nil },
+    { pattern = "klucz%a*",     color = nil },
+    { pattern = "zamk%a*",      color = nil },
+    { pattern = "scian%a*",     color = nil },
+    { pattern = "podlog%a*",    color = nil },
+    { pattern = "sufit%a*",     color = nil },
+    { pattern = "piwnic%a*",    color = nil },
+    { pattern = "strych%a*",    color = nil },
+    { pattern = "taras%a*",     color = nil },
+    { pattern = "balkon%a*",    color = nil },
+    { pattern = "ogrod%a*",     color = nil },
+    { pattern = "dziedzin%a*",  color = nil },
+    { pattern = "furtk%a*",     color = nil },
+    { pattern = "plot%a*",      color = nil },
+    { pattern = "krat%a*",      color = nil },
+    { pattern = "klatk%a*",     color = nil },
+    { pattern = "miecz%a*",     color = nil },
+    { pattern = "mikstur%a*",   color = nil },
+    { pattern = "pergamin%a*",  color = nil },
+    { pattern = "skarb%a*",     color = nil },
+    { pattern = "map%a*",       color = nil },
+    { pattern = "notatk%a*",    color = nil },
+    { pattern = "przedmiot%a*", color = nil },
+    { pattern = "stert%a*",     color = nil },
+    { pattern = "szmat%a*",     color = nil },
+    { pattern = "pudelk%a*",    color = nil },
+    { pattern = "pojemnik%a*",  color = nil },
+    { pattern = "sloik%a*",     color = nil },
+    { pattern = "beczk%a*",     color = nil },
+    { pattern = "zwoj%a*",      color = nil },
+    { pattern = "gor%a*",       color = nil },
+    { pattern = "posag%a*",     color = nil },
+    { pattern = "statu%a*",     color = nil },
+    { pattern = "bandaz%a*",    color = nil },
+    { pattern = "lancuch%a*",   color = nil },
+    { pattern = "polk%a*",      color = nil },
+    { pattern = "szczelin%a*",  color = nil },
+    { pattern = "wnek%a*",      color = nil },
+    { pattern = "otwor%a*",     color = nil },
+    { pattern = "wyrw%a*",      color = nil },
+    { pattern = "glaz%a*",      color = nil },
+    { pattern = "owoc%a*",      color = nil },
+    { pattern = "warzyw%a*",    color = nil },
+    { pattern = "kufr%a*",      color = nil },
+    { pattern = "klod%a*",      color = nil },
+    { pattern = "slad%a*",      color = nil }
 }
+
 
 function chaosforge:longdesc_stylesheet()
     return [[
@@ -22,14 +106,14 @@ end
 
 function chaosforge.longdesc_label:show()
     local message = amap.localization.current_long
-    local window_width = getMainWindowSize()
-    local label_width = window_width
-    local chars_per_line = math.floor(label_width / 10)
+    local label_width = getMainWindowSize()
+    local chars_per_line = math.floor(label_width / 12)
     local num_lines = math.ceil(#message / chars_per_line)
-    local label_height = num_lines * 15
+    local label_height = num_lines * 20
 
-    for _, p in ipairs(Patterns) do
-        message = message:gsub(p.pattern, p.color .. p.pattern .. "<green>")
+    for _, p in ipairs(chaosforge.longdesc_label.patterns) do
+        local color = p.color or "<white>"
+        message = message:gsub(p.pattern, color .. "%0" .. "<green>")
     end
     self.cf_long_label = Geyser.Label:new({
         name = "cf_long_label",
