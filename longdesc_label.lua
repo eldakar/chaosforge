@@ -110,10 +110,11 @@ function chaosforge.longdesc_label:show()
     local chars_per_line = math.floor(label_width / 12)
     local num_lines = math.ceil(#message / chars_per_line)
     local label_height = num_lines * 20
-
-    for _, p in ipairs(chaosforge.longdesc_label.patterns) do
-        local color = p.color or "<white>"
-        message = message:gsub(p.pattern, color .. "%0" .. "<green>")
+    if chaosforge.longs_patterns == true then
+        for _, p in ipairs(chaosforge.longdesc_label.patterns) do
+            local color = p.color or "<white>"
+            message = message:gsub(p.pattern, color .. "%0" .. "<green>")
+        end
     end
     self.cf_long_label = Geyser.Label:new({
         name = "cf_long_label",

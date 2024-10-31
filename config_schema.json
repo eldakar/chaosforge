@@ -9,6 +9,12 @@
             "macros_on_modify": []
         },
         {
+            "name": "chaosforge.longs_patterns",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
+        },
+        {
             "name": "chaosforge.item_hints",
             "default_value": false,
             "field_type": "boolean",
