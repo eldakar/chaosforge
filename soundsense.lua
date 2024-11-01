@@ -3,17 +3,17 @@ soundsense = soundsense or {}
 soundsense.soundtable = {
     ["walka"] = {
         ["zadane"] = {
-            ["cios"] = "sounds/walka_zadane_1.mp3",
-            ["finish"] = "sounds/walka_zadane_2.mp3",
+            ["cios"] = "sounds/hit.mp3",
+            ["finish"] = "sounds/finish.wav",
+            ["spec"] = "sounds/spec.wav",
         },
         ["uniki"] = {
-            ["unik"] = "sounds/walka_uniki_1.mp3",
-            ["pudlo"] = "sounds/walka_uniki_2.mp3",
+            ["unik"] = "sounds/dodge.wav",
+            ["pudlo"] = "sounds/miss.wav",
         },
         ["parowanie"] = {
-            ["bron"] = "sounds/walka_parowanie_1.mp3",
-            ["zbroja"] = "sounds/walka_parowanie_2.mp3",
-            ["tarcza"] = "sounds/walka_parowanie_3.mp3",
+            ["bron"] = "sounds/parry.ogg",
+
         }
     },
     ["env"] = {
@@ -21,11 +21,6 @@ soundsense.soundtable = {
         ["burza"] = "sounds/burza.mp3",
         ["wiatr"] = "sounds/wiatr.mp3",
     }
-}
-
-local sound_map = {
-    ["ledwo muskasz"] = soundsense.soundtable["walka"]["zadane"]["1"],
-    ["uuu wieje wiatr"] = soundsense.soundtable["env"]["wiatr"]
 }
 
 function soundsense.play_sound(sound)

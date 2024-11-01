@@ -17,6 +17,7 @@ end
 
 function scripts.gags:gag(power, total_power, kind)
     self:gag_prefix(string.format("%d/%d", power, total_power), kind)
+    soundsense.play_sound(soundsense.soundtable["walka"]["zadane"]["cios"])
 end
 
 function scripts.gags:gag_spec(prefix, power, total_power, kind)
