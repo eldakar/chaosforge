@@ -27,14 +27,13 @@ function soundsense.play_sound(sound)
     if not sound then
         return
     end
-    playSoundFileplaySoundFile(
+    playSoundFile(
         sound -- name
         , 75 -- volume
         , nil -- fadein
         , nil -- fadeout
         , nil -- start
         , 25 -- priority
-        , "" -- url
         , nil -- finish
     )
 end
