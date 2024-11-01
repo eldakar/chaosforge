@@ -3,7 +3,7 @@ soundsense = soundsense or {}
 soundsense.soundtable = {
     ["walka"] = {
         ["zadane"] = {
-            ["cios"] = "sounds/hit.mp3",
+            ["cios"] = "sounds/finish.wav",
             ["finish"] = "sounds/finish.wav",
             ["spec"] = "sounds/spec.wav",
         },
@@ -24,16 +24,5 @@ soundsense.soundtable = {
 }
 
 function soundsense.play_sound(sound)
-    if not sound then
-        return
-    end
-    playSoundFile(
-        sound -- name
-        , 75 -- volume
-        , nil -- fadein
-        , nil -- fadeout
-        , nil -- start
-        , 25 -- priority
-        , nil -- finish
-    )
+    playSoundFile(sound)
 end
