@@ -1,5 +1,6 @@
 arkadia_references = arkadia_references or {
-    state = {}
+    state = {}, 
+    handler = nil
 }
 
 function arkadia_references:createPortalShorts()
@@ -137,4 +138,4 @@ function arkadia_references:init()
     arkadia_references:createPortalShorts()
 end
 
-arkadia_references:init()
+arkadia_references.handler  = scripts.event_register:register_singleton_event_handler(arkadia_references.handler, "profileLoaded", function() arkadia_references:init() end)
