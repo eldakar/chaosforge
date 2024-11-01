@@ -3,6 +3,7 @@ arkadia_herbporn = arkadia_herbporn or {
     items = {},
     panel = "",
     bufflabel = nil,
+    handler = nil,
     fontsize = 14,
     alchemist_mode = false,
     alchemist_last_taken_name = nil,
@@ -358,7 +359,7 @@ function arkadia_herbporn:init()
         arkadia_herbporn:loop()
     end
     arkadia_herbporn:create_triggers()
-
 end
 
-arkadia_herbporn:init()
+
+arkadia_herbporn.hadler  = scripts.event_register:register_singleton_event_handler(arkadia_herbporn.hadler , "profileLoaded", function() arkadia_herbporn:init() end)
