@@ -369,4 +369,5 @@ function arkadia_references.items:init()
     end
 end
 
-arkadia_references.items:init()
+--tempTimer(5, function() arkadia_references.items:init() end)
+arkadia_references.items.handler  = scripts.event_register:register_singleton_event_handler(arkadia_references.items.handler, "profileLoaded", function() arkadia_references.items:init() end)
