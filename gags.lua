@@ -17,7 +17,9 @@ end
 
 function scripts.gags:gag(power, total_power, kind)
     self:gag_prefix(string.format("%d/%d", power, total_power), kind)
-    soundsense.play_sound(soundsense.soundtable["walka"]["zadane"]["cios"])
+    if kind == "moje_ciosy" then
+        soundsense.play_sound(soundsense.soundtable["walka"]["zadane"]["cios"])
+    end
 end
 
 function scripts.gags:gag_spec(prefix, power, total_power, kind)
@@ -28,6 +30,7 @@ end
 function scripts.gags:gag_own_spec(power, total_power)
     if total_power then
         self:gag_spec(self.own_spec_prefix, power, total_power, "moje_spece")
+        soundsense.play_sound(soundsense.soundtable["walka"]["zadane"]["spec"])
     else
         local own_prefix = self.own_spec_prefix == "" and "" or self.own_spec_prefix .. " "
         self:gag_prefix(string.format("%s%s", own_prefix, power), "moje_spece")
@@ -35,6 +38,12 @@ function scripts.gags:gag_own_spec(power, total_power)
 end
 
 function scripts.gags:gag_prefix(gag_prefix, kind)
+    if kind == "moje_uniki" then
+        soundsense.play_sound(soundsense.soundtable["walka"]["uniki"]["unik"])
+    end
+    if kind == "moje_parowanie" then
+        soundsense.play_sound(soundsense.soundtable["walka"]["parowanie"]["bron"])
+    end
     if self:delete_line(kind) then
         return
     end
@@ -91,4 +100,5 @@ end
 function scripts.gags:attacker_target_fin()
     local target = self:who_hits_attacker_target()
     self:gag_prefix(self.fin_prefix, target)
+    soundsense.play_sound(soundsense.soundtable["walka"]["zadane"]["finish"])
 end

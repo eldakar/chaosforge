@@ -3,7 +3,7 @@ soundsense = soundsense or {}
 soundsense.soundtable = {
     ["walka"] = {
         ["zadane"] = {
-            ["cios"] = "sounds/finish.wav",
+            ["cios"] = "sounds/hit.wav",
             ["finish"] = "sounds/finish.wav",
             ["spec"] = "sounds/spec.wav",
         },
