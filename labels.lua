@@ -75,6 +75,8 @@ function arkadia_findme.labels:load_magic_paths()
     arkadia_findme.labels.magic_paths = {}
     arkadia_findme.labels.magic_popup = ""
 
+    local columns_cnt = 0
+
     for k, v in pairs(arkadia_findme.labels.magic_nodes) do
         if arkadia_findme.labels.visited_nodes[tonumber(k)] ~= true then
             getPath(amap.curr.id, k)
@@ -85,7 +87,23 @@ function arkadia_findme.labels:load_magic_paths()
                         if not amap.ui["dir_to_fancy_symbol"][speedWalkDir[1]] then
                             amap.ui["dir_to_fancy_symbol"][speedWalkDir[1]] = "X"
                         end
-                        arkadia_findme.labels.magic_popup = arkadia_findme.labels.magic_popup .. amap.ui["dir_to_fancy_symbol"][speedWalkDir[1]] .. " " .. string.format("%-3s",#speedWalkPath) .. " " .. arkadia_findme.labels.magic_nodes_names[k] .. "\n"
+
+                        if arkadia_findme.labels.map_info_enabled == true then
+                            if columns_cnt == 1 then
+                                columns_cnt = 1
+                                arkadia_findme.labels.magic_popup = arkadia_findme.labels.magic_popup .. "\n"
+                            else
+                                columns_cnt = columns_cnt + 1
+                            end
+                            local strvalue =    amap.ui["dir_to_fancy_symbol"][speedWalkDir[1]] .. " " .. 
+                                                string.format("%-3s",#speedWalkPath) .. " " .. 
+                                                string.format("%-40s",arkadia_findme.labels.magic_nodes_names[k])
+                                                --mc.poi.kill_times[arkadia_findme.labels.magic_nodes_names[k]] .. "\n"                                                
+                                                --mc.poi:get_time_killed(arkadia_findme.labels.magic_nodes_names[k]) .. "\n"
+                                                
+arkadia_findme.labels.magic_popup = arkadia_findme.labels.magic_popup .. strvalue
+                                                            
+                        end
                     end
                     for kk,vv in pairs(speedWalkPath) do
                         -- dont overwrite nodes with path
@@ -150,9 +168,12 @@ function arkadia_findme.labels:magic_toggle()
         if arkadia_findme.labels.timer and exists(arkadia_findme.labels.timer, "timer") then killTimer(arkadia_findme.labels.timer) end
     else
         arkadia_findme:debug_print("Wyswietlanie magikow <green>WLACZONE")
-        if arkadia_findme.labels.map_info == true then
+        if arkadia_findme.labels.map_info_enabled == true then
             registerMapInfo("MC", function() return string.format("%s", arkadia_findme.labels.magic_popup) end)
             enableMapInfo("MC")
+        end
+        if not mc.poi.kill_times then
+            mc.poi.kill_times = { ["TESTY ELDA"] = 1723374964}
         end
         arkadia_findme.labels.coloring=true
         arkadia_findme.labels:load_magic_nodes()
@@ -295,10 +316,13 @@ function arkadia_findme.labels:importPOI()
 end
 
 function mc.poi:get_last_kills_longer()
-    arkadia_findme.labels.last_check = os.time() - 800000000
+    arkadia_findme.labels.last_check = os.time() - 54400
     local params = { orderBy = [[%22time%22]], startAt = arkadia_findme.labels.last_check }
-    FireBaseClientFactory:getClient():getData("keyMobsKills.json", function(data) arkadia_findme.labels:update_kills(data) end, params)
+    FireBaseClientFactory:getClient():getData("keyMobsKills.json", function(data) mc.poi:update_kills(data) end, params)
 end
+--function mc.poi:get_last_kills()
+--self.kill_data = table.update(self.kill_data or {}, data) mc.poi.kill_data
+
 
 function arkadia_findme.labels:merge_all_poi_data()
     for k, v in pairs(mc.poi.kill_data) do

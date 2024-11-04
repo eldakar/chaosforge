@@ -162,7 +162,7 @@ function arkadia_herbporn:loop()
             }, arkadia_herbporn.geyser_container)
             arkadia_herbporn.items[i].label:setStyleSheet(
                 string.format("border-image: url('%s'); qproperty-alignment: 'AlignCenter | AlignVCenter';",
-                string.format("%s/plugins/chaosforge/%s.png", getMudletHomeDir(), arkadia_herbporn.items[i].type))
+                string.format("%s/plugins/chaosforge/icons/%s.png", getMudletHomeDir(), arkadia_herbporn.items[i].type))
             )
             --arkadia_herbporn.items[i].label:echo("<font color='lawn green'>" .. self:nice_minutes(arkadia_herbporn.items[i].effect))
             arkadia_herbporn.items[i].gauge = Geyser.Gauge:new({
@@ -201,7 +201,7 @@ function arkadia_herbporn:loop()
                 }, arkadia_herbporn.geyser_container)
                 arkadia_herbporn.items[i].label:setStyleSheet(
                     string.format("border-image: url('%s'); qproperty-alignment: 'AlignCenter | AlignVCenter';",
-                    string.format("%s/plugins/chaosforge/%s.png", getMudletHomeDir(), arkadia_herbporn.items[i].type))
+                    string.format("%s/plugins/chaosforge/icons/%s.png", getMudletHomeDir(), arkadia_herbporn.items[i].type))
                 )
                 --arkadia_herbporn.items[i].label:echo("<font color='lawn green'>" .. self:nice_minutes(arkadia_herbporn.items[i].effect))
                 arkadia_herbporn.items[i].gauge = Geyser.Gauge:new({
