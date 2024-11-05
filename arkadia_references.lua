@@ -18,12 +18,36 @@ function arkadia_references:createPortalShorts()
 end
 --🢀 🢂 🢁 🢃 🢄 🢅 🢆 🢇
 
+
+function arkadia_references:createMiedzAlias()
+    if arMie then
+        return
+    end
+    arMie = tempAlias("/ar miedz$", [[
+        cecho("<reset>+-----------------+-STR-+-UDZWIG-+-MIEDZ+\n")
+        cecho("<reset>|<dark_orange>mocarny+bduzo    <reset>| 119 | 129000 |  8062|\n")
+        cecho("<reset>|<dark_orange>mocarny+duzo     <reset>| 122 | 132000 |  8250|\n")
+        cecho("<reset>|<coral>mocarny+troche   <reset>| 125 | 135000 |  8437|\n")
+        cecho("<reset>|<coral>mocarny+niewiele <reset>| 129 | 139000 |  8687|\n")
+        cecho("<reset>|<orange_red>mocarny+bniewiele<reset>| 132 | 142000 |  8875|\n")
+        cecho("<reset>|<orange_red>epik+bduzo       <reset>| 136 | 146000 |  9125|\n")
+        cecho("<reset>|<ansi_light_red>epik+duzo        <reset>| 139 | 149000 |  9312|\n")
+        cecho("<reset>|<ansi_light_red>epik+troche      <reset>| 142 | 152000 |  9500|\n")
+        cecho("<reset>|<ansi_red>epik+niewiele    <reset>| 146 | 156000 |  9750|\n")
+        cecho("<reset>|<ansi_red>epik+bniewiele   <reset>| 149 | 159000 |  9937|\n")
+        cecho("<reset>|<ansi_red>nadludz          <reset>| 160 | 170000 | 10625|\n")
+        cecho("<reset>+-----------------+-----+--------+------+\n")        
+    ]])
+end
+
+
 function arkadia_references:help()
     chaosforge:debug_print("info", "Pomoc do skryptow referencji")
     cecho("/ar elf        - przedrostki elfa, jak ktos chce dla swojej rasy to prosze o liste\n")
     cecho("/ar por        - opisy przejsc w portalu\n")
     cecho("/ar kamienie   - opisy efektow dzialania kamieni\n")
     cecho("/ar umy        - statyczna porownania umiejetnosci zawodow\n")
+    cecho("/ar miedz      - tablica postepow sily przy tescie miedzi\n")
 end
 
 
@@ -136,6 +160,7 @@ function arkadia_references:init()
     arkadia_references:createSkillsAlias()
 	arkadia_references:createElfShorts()
     arkadia_references:createPortalShorts()
+    arkadia_references:createMiedzAlias()
 end
 
 arkadia_references.handler  = scripts.event_register:register_singleton_event_handler(arkadia_references.handler, "profileLoaded", function() arkadia_references:init() end)
