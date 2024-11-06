@@ -103,6 +103,12 @@
             "default_value": false,
             "field_type": "boolean",
             "macros_on_modify": []
+        },
+        {
+            "name": "chaosforge.new_kill_summary",
+            "default_value": false,
+            "field_type": "boolean",
+            "macros_on_modify": []
         }
     ]
 }

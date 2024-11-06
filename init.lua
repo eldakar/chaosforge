@@ -95,6 +95,9 @@ function chaosforge:config_cheatsheet()
 
     cecho(" " .. string.sub(string.format("%-40s", "chaosforge.discord_notifier"),1,40) .. " " .. "<magenta>" .. string.sub(string.format("%-10s", tostring(chaosforge.discord_notifier)),1,10) .. "<reset>")
     cecho(" - wyswietlaj logowanie/wylogowanie na discordzie MC\n")
+
+    cecho(" " .. string.sub(string.format("%-40s", "chaosforge.new_kill_summary"),1,40) .. " " .. "<magenta>" .. string.sub(string.format("%-10s", tostring(chaosforge.new_kill_summary)),1,10) .. "<reset>")
+    cecho(" - wyswietlaj alternatywne podsumowanie po zabiciu\n")
 end
 
 return {

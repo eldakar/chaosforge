@@ -1,11 +1,25 @@
 function trigger_func_skrypty_ui_gags_color_color_other_zabiles_color()
-    scripts.inv.collect:killed_action()
-    deleteLine()
-    print("\n")
-    chaosforge:debug_print("expo", matches[1])
-    malleus_cobolorum:getMobData(matches[4], "n")
-    chaosforge:debug_print("<green>item", "Zbierz z ciala: " .. scripts.keybind.configuration.collect_from_body.modifier[1] .. " + " .. scripts.keybind.configuration.collect_from_body.key)
-    print("\n")
+    if chaosforge.new_kill_summary == true then
+        scripts.inv.collect:killed_action()
+        deleteLine()
+        print("\n")
+        chaosforge:debug_print("expo", matches[1])
+        malleus_cobolorum:getMobData(matches[4], "n")
+        chaosforge:debug_print("<green>item", "Zbierz z ciala: " .. scripts.keybind.configuration.collect_from_body.modifier[1] .. " + " .. scripts.keybind.configuration.collect_from_body.key)
+        print("\n")
+    else
+        selectCurrentLine()
+
+        local counter = 1
+        if misc.counter.killed_amount["JA"] then
+            counter = misc.counter.killed_amount["JA"]
+        end
+        local counter_str = "<tomato> (" .. tostring(counter) .. " / " .. tostring(misc.counter.all_kills) .. ")"
+  
+        creplaceLine("\n\n<tomato>[  " .. matches[3]:upper() .. "  ] <grey>" .. matches[2] .. counter_str .. "\n\n")
+        scripts.inv.collect:killed_action()
+        resetFormat()
+    end
 end
 
 function trigger_func_skrypty_ui_gags_color_color_other_zabil_color()
