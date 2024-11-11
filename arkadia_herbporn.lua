@@ -306,7 +306,7 @@ end
 
 function arkadia_herbporn:init_triggers()
     self.triggers["misterny_on"] = tempTrigger("Spinasz za pomoca srebrnej broszy",function () self:add_buff("misterny_plaszcz") end, nil)
-    self.triggers["misterny_off"] = tempTrigger("Ostroznie odpinasz srebrna brosze spinajaca", function () self:del_buff("misterny_plaszcz") end, nil)
+    self.triggers["misterny_off"] = tempTrigger("Ostroznie odpinasz srebrna brosze spinajaca", function () self:del_buff_force("misterny_plaszcz") end, nil)
 end
 
 function trigger_func_skrypty_ui_footer_elements_weapon_on()
@@ -321,7 +321,7 @@ function trigger_func_skrypty_ui_footer_elements_weapon_off()
     end
     scripts.inv.weapon_grip = false
     raiseEvent("weapon_state", false)
-    if string.find(matches[1], "Szybkim ruchem opuszczasz jasniejacy zdobiony jatagan") then arkadia_herbporn:del_buff("jatagan") end
+    if string.find(matches[1], "Szybkim ruchem opuszczasz jasniejacy zdobiony jatagan") then arkadia_herbporn:del_buff_force("jatagan") end
 end
 
 
